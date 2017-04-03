@@ -25,6 +25,7 @@ public class RouletteV2ClientImpl extends RouletteV1ClientImpl implements IRoule
   @Override
   public List<Student> listStudents() throws IOException {
     writer.println(RouletteV2Protocol.CMD_LIST);
+    writer.flush();
     String line = reader.readLine();
     StudentsList studentsList = JsonObjectMapper.parseJson(line, StudentsList.class);
     return studentsList.getStudents();
